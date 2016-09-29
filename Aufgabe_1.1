@@ -1,0 +1,59 @@
+//================================================================================
+//
+//   Filename:      Module1_Aufgabe1.1
+//
+//   Description:   Summenbildung bei endlichen Reihen
+//
+//   Version:       1.0
+//   Created:       29.09.2016
+//   Revision:      none
+//   Compiler:      g++
+//
+//   Author:        Alexander Orlowski
+//   Organisation:  FH Südwestfalen, Iserlohn
+//
+//===============================================================================
+
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+//-------------------------------------------------------------------------------
+//  Hauptprogramm
+//-------------------------------------------------------------------------------
+
+int main()
+{
+    //Variablen Deklaration
+    double H=0.0;
+    double A=0.0;
+    double L=0.0;
+    double G=0.0;
+
+    //Deklaration von Hilfsvariablen
+
+    double v=1.0; //Hilfsvariable für Vorzeichenwechsel des Summanden
+    double ng=1.0; //Hilfsvariable für Leibnischen Reihe , Nenner von G
+    double summand = 1.0; //Hilfsvariable für Geometrische Reihe
+
+    // Kopfbezogene Schleifen, soll 1000 mal durchlaufen
+    for (int i=1; i<=1000; i += 1)
+    {
+        H = H + (1.0/i); //Harmonische Reihe 1.1
+        A = A + v*(1.0/i); //Alternierende Harmonische Reihe 1.2
+        L = L + v*(1.0/ng); //Leibnische Reihe 1.3
+        G = G + summand; //Geometrische Reihe 1.4
+
+        //Manipulation der Hilfvariablen am Ende der Schleife
+        summand = (0.5 * summand);
+        ng = ng + 2;
+        v = -v; //vorzeihenwechsel für 1.1 und 1.2
+    }
+
+    cout <<"Reihe H: " << setprecision(6) << H << endl;
+    cout <<"Reihe A: " << setprecision(6) << A << endl;
+    cout <<"Reihe L: " << setprecision(6) << L << endl;
+    cout <<"Reihe G: " << setprecision(6) << G << endl;
+    return 0;
+}
