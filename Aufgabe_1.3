@@ -1,0 +1,138 @@
+//================================================================================
+//
+//   Filename:      Module1_Aufgabe1.3
+//
+//   Description:   Reihensummer bekannter Funktionen
+//
+//   Version:       1.0
+//   Created:       01.10.2016
+//   Revision:      none
+//   Compiler:      g++
+//
+//   Author:        Alexander Orlowski
+//   Organisation:  FH Südwestfalen, Iserlohn
+//
+//===============================================================================
+
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+
+using namespace std;
+//-------------------------------------------------------------------------------
+//  Hilfsmethoden
+//-------------------------------------------------------------------------------
+
+double fakultaet(double zahl)
+{
+    if (zahl <= 1)
+    {
+    return 1; // Die Fakultät von 0 und 1 ist als 1 definiert.
+    }
+
+    return fakultaet(zahl - 1) * zahl;
+  }
+
+//-------------------------------------------------------------------------------
+//  Hauptprogramm
+//-------------------------------------------------------------------------------
+
+int main()
+{
+    //Variablen Deklaration
+    double ex=0.0;
+    double coshx=0.0;
+    double cosx=0.0;
+    double x=1.2;
+    double summand=0.0;
+
+
+    //Deklaration von Hilfsvariablen
+    double ex_old=0.0; //
+    double coshx_old=0.0;
+    double cosx_old=0.0;
+    int ex_count=0; //Durchlaufzähler für e^x
+    int coshx_count=0; //Durchlaufzähler für cosh(x)
+    int cosx_count=0; //Durchlaufzäher für cos(x)
+    double k=0.0;
+    double cosk=0.0; //Variable für 2*k
+
+    //Do While Schleife
+    do
+    {
+        //Setzt ex_old mit dem alten Ergebis von ex zum vergleichen
+
+        ex_old = summand;
+
+        ex = pow(x,k) / fakultaet(k);
+
+        summand=ex_old+ex;
+        k += 1;
+
+        //Durchlaufzähler
+        ex_count += 1;
+
+        //Ausgabe der Zwischenergebnisse
+        cout <<"Zwichenergebnis fuer e^x: " << fixed << setw(30) << summand << endl;
+
+    } while ( ex_old != summand); //Prüft ob das neue Ergebnis sich vom vorherigem unterscheidet
+
+
+        k=0.0;
+        summand = 0.0;
+
+//Do While Schleife COSH
+    do
+    {
+        //Setzt cosx_old mit dem alten Ergebis von cosx zum vergleichen
+
+        coshx_old = summand;
+
+        coshx = pow(x,cosk) / fakultaet(cosk);
+
+        summand=coshx_old+coshx;
+        k += 1;
+        cosk=2*k;
+
+        //Durchlaufzähler
+        coshx_count += 1;
+
+        //Ausgabe der Zwischenergebnisse
+        cout <<"Zwichenergebnis fuer cosh(x): " << fixed << setw(30) << summand << endl;
+
+    } while ( coshx_old != summand); //Prüft ob das neue Ergebnis sich vom vorherigem unterscheidet
+
+
+        //Setzt k und summand wieder auf 0 für neue Schleife
+        k=0.0;
+        summand = 0.0;
+
+//Do While Schleife COS(X)
+    do
+    {
+        //Setzt cosx_old mit dem alten Ergebis von cosx zum vergleichen
+
+        cosx_old = summand;
+
+        cosx = pow(-1,k) * pow(x,cosk) / fakultaet(cosk);
+
+        summand=cosx_old+cosx;
+        k += 1;
+        cosk=2*k;
+
+        //Durchlaufzähler
+        cosx_count += 1;
+
+        //Ausgabe der Zwischenergebnisse
+        cout <<"Zwichenergebnis fuer cos(x): " << fixed << setw(30) << summand << endl;
+
+    } while ( cosx_old != summand); //Prüft ob das neue Ergebnis sich vom vorherigem unterscheidet
+
+    //Programmausgabe
+
+    //Ausgabe der Durchläufe
+    cout <<"\nDurchlaeufe e^x: " << ex_count << endl;
+    cout <<"\nDurchlaeufe cosh(x): " << coshx_count << endl;
+    cout <<"\nDurchlaeufe cos(x): " << cosx_count << endl;
+    return 0;
+}
