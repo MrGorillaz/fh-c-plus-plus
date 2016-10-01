@@ -1,0 +1,42 @@
+//================================================================================
+//
+//   Filename:      Module1_Aufgabe1.4
+//
+//   Description:   Summe der Reihe 1*3-3*5+5*7....
+//
+//   Version:       1.0
+//   Created:       01.10.2016
+//   Revision:      none
+//   Compiler:      g++
+//
+//   Author:        Alexander Orlowski
+//   Organisation:  FH Südwestfalen, Iserlohn
+//
+//===============================================================================
+
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+
+using namespace std;
+
+int main ()
+{
+
+//Variablendeklaration
+double summe = 0.0;
+double summen = 0.0;
+int k=1;
+int n=10;
+
+//Lösung mit Schleife
+for ( k=1; k<=n; k+=1 )
+{
+ summe = pow(-1,k)*(2*k-1)*(2*k+1);
+ summen = summen + summe;
+}
+
+
+cout << "Ergebnis mit Schleife: " << summen << endl;
+return 0;
+}
