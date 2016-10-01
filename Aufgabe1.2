@@ -1,0 +1,59 @@
+//================================================================================
+//
+//   Filename:      Module1_Aufgabe1.2
+//
+//   Description:   Summenbildung bei endlichen Reihen
+//
+//   Version:       1.0
+//   Created:       01.10.2016
+//   Revision:      none
+//   Compiler:      g++
+//
+//   Author:        Alexander Orlowski
+//   Organisation:  FH Südwestfalen, Iserlohn
+//
+//===============================================================================
+
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+//-------------------------------------------------------------------------------
+//  Hauptprogramm
+//-------------------------------------------------------------------------------
+
+int main()
+{
+    //Variablen Deklaration
+    double G=0.0;
+    double G_old=0.0; // Vergleichsvariable für G
+    int g_count=0; //Durchlaufzähler
+
+    //Deklaration von Hilfsvariablen
+    double summand = 1.0; //Hilfsvariable für Geometrische Reihe
+
+    //Do While Schleife
+    do
+    {
+        //Setzt G_old mit dem alten Ergebis von G zum vergleichen
+        G_old = G;
+
+        G = G + summand; //Geometrische Reihe 1.4
+
+        //Manipulation der Hilfvariablen am Ende der Schleife
+        summand = (0.5 * summand);
+
+        //Ausgabe der Zwischenergebnisse
+        cout <<"Reihe G: " << fixed << setprecision(16) << G << endl;
+
+        //Durchlaufzähler
+        g_count += 1;
+
+    } while ( G_old != G); //Prüft ob das neue Ergebnis für G sich vom vorherigem unterscheidet
+    //Programmausgabe
+
+    //Ausgabe der Durchläufe
+    cout <<"\nDurchlaeufe: " << g_count << endl;
+    return 0;
+}
