@@ -73,7 +73,7 @@ int main()
         ex_count += 1;
 
         //Ausgabe der Zwischenergebnisse
-        cout <<"Zwichenergebnis fuer e^x: " << fixed << setw(30) << summand << endl;
+        cout <<"Zwichenergebnis fuer e^x: " << fixed << setprecision(30) << summand << endl;
 
     } while ( ex_old != summand); //Prüft ob das neue Ergebnis sich vom vorherigem unterscheidet
 
@@ -98,7 +98,7 @@ int main()
         coshx_count += 1;
 
         //Ausgabe der Zwischenergebnisse
-        cout <<"Zwichenergebnis fuer cosh(x): " << fixed << setw(30) << summand << endl;
+        cout <<"Zwichenergebnis fuer cosh(x): " << fixed << setprecision(30) << summand << endl;
 
     } while ( coshx_old != summand); //Prüft ob das neue Ergebnis sich vom vorherigem unterscheidet
 
@@ -124,7 +124,7 @@ int main()
         cosx_count += 1;
 
         //Ausgabe der Zwischenergebnisse
-        cout <<"Zwichenergebnis fuer cos(x): " << fixed << setw(30) << summand << endl;
+        cout <<"Zwichenergebnis fuer cos(x): " << fixed << setprecision(30) << summand << endl;
 
     } while ( cosx_old != summand); //Prüft ob das neue Ergebnis sich vom vorherigem unterscheidet
 
