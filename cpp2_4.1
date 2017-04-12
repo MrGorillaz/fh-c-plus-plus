@@ -1,0 +1,197 @@
+//================================================================================
+//
+//   Filename:      Personenbeschreibung als Struktur
+//
+//   Description:   Liest Daten aus einer Datei Speichert diese in eine Struktur
+//                  und gibt diese aus.
+//
+//   Version:       1.0
+//   Created:       05.04.2017
+//   Revision:      none
+//   Compiler:      g++
+//
+//   Author:        Alexander Orlowski
+//   Organisation:  FH Südwestfalen, Iserlohn
+//
+//===============================================================================
+
+#include <iostream>
+#include <iomanip>
+#include <fstream>
+
+#define unsigned int unit;
+
+using namespace std;
+
+
+
+struct Person
+{
+    string identnummer;
+    string nachname;
+    string vorname;
+    string abteilung;
+    string druchwahl;
+};
+
+class Mitarbeiter
+{
+public:
+    Mitarbeiter ( string id = "-", string nn = "-", string vn = "-",
+                  string ab = "-", string dw = "-");
+    Mitarbeiter (const Mitarbeiter &other);
+    ~Mitarbeiter ();
+
+    //==========================
+    string get_identnummer () const;
+    string get_nachname () const;
+    string get_vorname () const;
+    string get_abteilung () const;
+    string get_durchwahl () const;
+    void print () ;
+
+    //=============================
+    void set_identnummer (string value);
+    void set_nachname (string value);
+    void set_vorname (string value);
+    void set_abteilung (string value);
+    void set_durchwahl (string value);
+    //================================
+    Mitarbeiter& operator = (const Mitarbeiter &other);
+
+private:
+    Person *p;
+};
+
+void Mitarbeiter::set_identnummer(string value)
+{
+    p->identnummer = value;
+}
+
+void Mitarbeiter::set_nachname(string value)
+{
+    p->nachname = value;
+}
+
+void Mitarbeiter::set_vorname(string value)
+{
+    p->vorname = value;
+}
+
+void Mitarbeiter::set_abteilung(string value)
+{
+    p->abteilung = value;
+}
+
+void Mitarbeiter::set_durchwahl(string value)
+{
+    p->druchwahl = value;
+}
+
+void Mitarbeiter::print()
+{
+    cout << get_identnummer();
+    cout << get_nachname();
+    cout << get_vorname();
+    cout << get_abteilung();
+    cout << get_durchwahl();
+
+}
+
+string Mitarbeiter::get_identnummer() const
+{
+ string identnummer;
+ identnummer = p->identnummer;
+
+ return identnummer;
+
+}
+
+string Mitarbeiter::get_nachname() const
+{
+    string nachname;
+    nachname = p->identnummer;
+    return nachname;
+
+}
+
+string Mitarbeiter::get_vorname() const
+{
+    string vorname;
+    vorname = p->vorname;
+    return vorname;
+
+}
+
+string Mitarbeiter::get_durchwahl() const
+{
+    string durchwahl;
+    durchwahl = p->druchwahl;
+    return durchwahl;
+}
+
+string Mitarbeiter::get_abteilung() const
+{
+    string abteilung;
+    abteilung = p->abteilung;
+    return abteilung;
+
+}
+
+Mitarbeiter::Mitarbeiter(string id, string nn, string vn, string ab, string dw)
+{
+    p->identnummer = id;
+    p->nachname = nn;
+    p->vorname = vn;
+    p->abteilung = ab;
+    p->druchwahl = dw;
+}
+
+Mitarbeiter::~Mitarbeiter()
+{
+    delete [] p;
+}
+
+
+int main()
+{
+    string datei = "personen.dat";              //definiert die datei personen.dat
+    string str;
+    string id,nn,vn,ab,dw;
+    ifstream personen (datei);                  //öffnet den die datei personen.dat
+    //Mitarbeiter *worker = new Mitarbeiter;
+    Mitarbeiter worker;
+    Mitarbeiter *wrk = &worker;
+    getline(personen,str) >> id >> nn >> vn >> ab >> dw; // Setzt werte für das Strukt
+
+
+    cout << id << " " << nn << " " << vn << " " << ab << " " << dw << endl;
+
+    wrk->print();
+    //worker.set_identnummer(id);
+    //worker.print();
+    /*worker->set_identnummer(id);
+    worker->set_nachname(nn);
+    worker->set_vorname(vn);
+    worker->set_abteilung(ab);
+    worker->set_durchwahl(dw);*/
+
+   /* cout << worker->get_identnummer() << endl;
+   cout << worker->get_nachname() << endl;
+    cout << worker->get_vorname() << endl;
+    cout << worker->get_abteilung() << endl;
+    cout << worker->get_durchwahl() << endl;*/
+
+
+
+   /*while (personen.get() != EOF)
+    {
+        getline(personen,str) >> id >> nn >> vn >> ab >> dw; // Setzt werte für das Strukt
+
+    }*/
+    personen.close();
+    wrk->~Mitarbeiter();
+                               //schließt filestream
+    cout << "Hello world!" << endl;
+    return 0;
+}
